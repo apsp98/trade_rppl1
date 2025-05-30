@@ -1,0 +1,361 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 213 94% 68%; /* #1976D2 */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 60 4.8% 95.9%;
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 60 4.8% 95.9%;
+  --accent-foreground: 24 9.8% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 213 94% 68%;
+  --radius: 0.5rem;
+  
+  /* Custom colors for trade compliance platform */
+  --surface: 0 0% 100%; /* #FFFFFF */
+  --background-gray: 210 11% 98%; /* #FAFAFA */
+  --text-primary: 210 22% 22%; /* #424242 */
+  --text-secondary: 0 0% 45%; /* #737373 */
+  --success: 122 39% 49%; /* #4CAF50 */
+  --warning: 36 100% 50%; /* #FF9800 */
+  --danger: 4 90% 58%; /* #F44336 */
+  
+  /* Confidence level colors */
+  --confidence-high: 122 39% 49%; /* #4CAF50 */
+  --confidence-medium: 36 100% 50%; /* #FF9800 */
+  --confidence-low: 4 90% 58%; /* #F44336 */
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 213 94% 68%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-gray-50 text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@layer components {
+  /* Header styles */
+  .app-header {
+    @apply bg-white shadow-sm border-b border-gray-200;
+  }
+  
+  /* Card styles matching design */
+  .customer-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer;
+  }
+  
+  /* Button primary style matching design */
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+  
+  /* Button secondary style */
+  .btn-secondary {
+    @apply bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+  
+  /* Status badge styles */
+  .status-active {
+    @apply bg-green-100 text-green-800 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .status-processing {
+    @apply bg-yellow-100 text-yellow-800 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .status-review {
+    @apply bg-red-100 text-red-800 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  /* Confidence indicators */
+  .confidence-high {
+    @apply bg-green-500;
+  }
+  
+  .confidence-medium {
+    @apply bg-yellow-500;
+  }
+  
+  .confidence-low {
+    @apply bg-red-500;
+  }
+  
+  /* Upload area styles */
+  .upload-area {
+    @apply border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-300 transition-colors;
+  }
+  
+  .upload-area.drag-active {
+    @apply border-blue-400 bg-blue-50;
+  }
+  
+  /* Table styles */
+  .data-table {
+    @apply bg-white border border-gray-200 rounded-lg overflow-hidden;
+  }
+  
+  /* Tab styles */
+  .tab-button {
+    @apply py-4 px-1 border-b-2 font-medium text-sm transition-colors;
+  }
+  
+  .tab-button.active {
+    @apply border-blue-600 text-blue-600;
+  }
+  
+  .tab-button:not(.active) {
+    @apply border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300;
+  }
+  
+  /* Form styles */
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .form-select {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  /* Stats card styles */
+  .stats-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6;
+  }
+  
+  .stats-icon {
+    @apply w-8 h-8 rounded-lg flex items-center justify-center;
+  }
+  
+  .stats-icon.primary {
+    @apply bg-blue-100 text-blue-600;
+  }
+  
+  .stats-icon.success {
+    @apply bg-green-100 text-green-600;
+  }
+  
+  .stats-icon.warning {
+    @apply bg-yellow-100 text-yellow-600;
+  }
+  
+  .stats-icon.info {
+    @apply bg-blue-100 text-blue-600;
+  }
+  
+  /* Document flags styles */
+  .flag-not-specified {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  .flag-low-confidence {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  /* Progress bar styles */
+  .progress-bar {
+    @apply w-full bg-gray-200 rounded-full h-2;
+  }
+  
+  .progress-fill {
+    @apply bg-blue-600 h-2 rounded-full transition-all duration-300;
+  }
+  
+  /* Modal styles */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+  }
+  
+  .modal-content {
+    @apply bg-white rounded-xl shadow-xl max-w-md w-full m-4;
+  }
+  
+  /* Animation utilities */
+  .fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-transform duration-200;
+  }
+  
+  .hover-lift:hover {
+    @apply transform -translate-y-1;
+  }
+  
+  /* Text truncation */
+  .text-truncate {
+    @apply overflow-hidden text-ellipsis whitespace-nowrap;
+  }
+  
+  /* Loading states */
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300 border-t-blue-600;
+  }
+  
+  /* Focus states */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+}
+
+@layer utilities {
+  /* Custom spacing utilities */
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .space-y-8 > * + * {
+    margin-top: 2rem;
+  }
+  
+  /* Text color utilities for confidence levels */
+  .text-confidence-high {
+    color: hsl(var(--confidence-high));
+  }
+  
+  .text-confidence-medium {
+    color: hsl(var(--confidence-medium));
+  }
+  
+  .text-confidence-low {
+    color: hsl(var(--confidence-low));
+  }
+  
+  /* Background color utilities for confidence levels */
+  .bg-confidence-high {
+    background-color: hsl(var(--confidence-high));
+  }
+  
+  .bg-confidence-medium {
+    background-color: hsl(var(--confidence-medium));
+  }
+  
+  .bg-confidence-low {
+    background-color: hsl(var(--confidence-low));
+  }
+  
+  /* Surface and background utilities */
+  .bg-surface {
+    background-color: hsl(var(--surface));
+  }
+  
+  .bg-background-gray {
+    background-color: hsl(var(--background-gray));
+  }
+  
+  /* Text color utilities */
+  .text-primary {
+    color: hsl(var(--text-primary));
+  }
+  
+  .text-secondary {
+    color: hsl(var(--text-secondary));
+  }
+  
+  /* Border utilities */
+  .border-light {
+    border-color: hsl(var(--border));
+  }
+  
+  /* Custom shadows */
+  .shadow-card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  .shadow-card-hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Responsive utilities */
+  @media (max-width: 768px) {
+    .mobile-stack {
+      @apply flex-col space-y-4 space-x-0;
+    }
+    
+    .mobile-full-width {
+      @apply w-full;
+    }
+  }
+}
